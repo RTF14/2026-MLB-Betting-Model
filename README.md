@@ -76,14 +76,26 @@ Or run it in GitHub:
 2. Go to `Actions`.
 3. Select `Run Historical Tests`.
 4. Click `Run workflow`.
-5. Open the completed run to see the summary table.
-6. Download the `mlb-historical-test-results` artifact for CSVs and dashboard HTML.
+5. Leave `include_odds_history` as `true` to calculate closing-line P/L where public odds history is available.
+6. Open the completed run to see the summary and feature-coverage tables.
+7. Download the `mlb-historical-test-results` artifact for CSVs and dashboard HTML.
 
 GitHub-rendered dashboard:
 
 ```text
 Historical Test Results\outputs\dashboard.md
 ```
+
+The historical dashboard now supports optional odds-history enrichment from:
+
+```text
+data\raw\mlb_odds_dataset.json
+```
+
+When present, it adds closing moneyline, ATS/run-line, and totals win
+percentage/ROI. Feature coverage for odds history, starting pitchers, lineups,
+bullpen state, injuries, and weather is shown separately so missing data is
+visible instead of silently assumed.
 
 ## Notes
 

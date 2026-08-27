@@ -1,13 +1,21 @@
 # Historical Test Results
 
 Run historical tests for the starter MLB prediction model and view the results
-in a simple dashboard.
+in a dashboard.
 
 ## One-Step Run
 
 From this folder:
 
 ```powershell
+.\run_historical_tests.ps1
+```
+
+To include closing-line betting results for seasons covered by the public odds
+dataset, download the optional odds file first:
+
+```powershell
+.\download_odds_history.ps1
 .\run_historical_tests.ps1
 ```
 
@@ -63,6 +71,25 @@ The dashboard reports:
 - margin MAE
 - average predicted total
 - average actual total
+- closing moneyline coverage, win percentage, and ROI
+- closing ATS/run-line coverage, win percentage, and ROI
+- closing totals coverage, win percentage, and ROI
+- feature coverage for odds history, starting pitchers, lineups, bullpen state,
+  injuries, and weather
 
-This is a starter baseline model test. It does not include closing odds,
-pitchers, lineups, weather, park factors, or governed bet execution yet.
+## Data Coverage
+
+Odds history loads from:
+
+```text
+data\raw\mlb_odds_dataset.json
+```
+
+The supported public odds dataset currently covers 2021-04-01 through
+2025-08-16. That means 2023 and 2024 can show closing-line betting results
+when the file is present. The 2026 buckets still show model-performance metrics
+unless a 2026 odds file is added later.
+
+Starting pitcher, lineup, bullpen, injury, and weather coverage are reported
+explicitly. Missing feature coverage is not imputed or backfilled by the
+dashboard.
