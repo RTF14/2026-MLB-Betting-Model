@@ -1,0 +1,25 @@
+test,market,rank,game_date,away_team,home_team,pick,edge,close_odds,pred_score,actual_score,result,unit_pnl
+2023,ML,1,2023-07-01,Chicago White Sox,Oakland Athletics,HOME,36.53,190.7,4.06-4.86,6-7,WIN,1.9068
+2023,ML,2,2023-08-12,New York Yankees,Miami Marlins,AWAY,31.12,134.8,4.88-4.12,1-3,LOSS,-1.0
+2023,ML,3,2023-04-10,Miami Marlins,Philadelphia Phillies,HOME,30.78,111.3,4.0-4.95,3-15,WIN,1.1129
+2023,ATS,1,2023-04-21,Oakland Athletics,Texas Rangers,AWAY,3.217,-105.2,4.5-4.7,5-4,WIN,0.9503
+2023,ATS,2,2023-07-01,Chicago White Sox,Oakland Athletics,HOME,2.55,104.4,4.06-4.86,6-7,WIN,1.0436
+2023,ATS,3,2023-05-19,Kansas City Royals,Chicago White Sox,AWAY,2.497,-140.4,4.66-4.08,0-2,LOSS,-1.0
+2023,OU,1,2023-04-30,San Francisco Giants,San Diego Padres,UNDER,10.8,-111.8,4.23-4.48,4-6,WIN,0.8943
+2023,OU,2,2023-04-29,San Francisco Giants,San Diego Padres,UNDER,6.8,-112.5,4.23-4.48,11-16,LOSS,-1.0
+2023,OU,3,2023-06-24,Chicago Cubs,St. Louis Cardinals,UNDER,4.467,-116.2,4.5-4.45,9-1,WIN,0.8606
+2024,ML,1,2024-05-15,Colorado Rockies,San Diego Padres,HOME,35.95,163.9,4.15-4.96,8-0,LOSS,-1.0
+2024,ML,2,2024-05-15,Miami Marlins,Detroit Tigers,HOME,31.15,167.5,4.09-4.69,2-0,LOSS,-1.0
+2024,ML,3,2024-05-15,Washington Nationals,Chicago White Sox,AWAY,28.89,312.4,4.5-4.35,0-2,LOSS,-1.0
+2024,ATS,1,2024-05-15,Pittsburgh Pirates,Milwaukee Brewers,AWAY,4.0,-115.6,4.12-4.62,2-10,LOSS,-1.0
+2024,ATS,2,2024-05-15,Colorado Rockies,San Diego Padres,HOME,3.81,157.0,4.15-4.96,8-0,LOSS,-1.0
+2024,ATS,3,2024-06-17,Cincinnati Reds,Pittsburgh Pirates,AWAY,2.46,-128.1,4.4-4.44,1-4,LOSS,-1.0
+2024,OU,1,2024-04-27,Houston Astros,Colorado Rockies,UNDER,7.29,-111.3,4.94-4.27,12-4,WIN,0.8988
+2024,OU,2,2024-04-28,Houston Astros,Colorado Rockies,UNDER,6.707,-109.0,4.94-4.27,8-2,WIN,0.9175
+2024,OU,3,2024-05-15,Washington Nationals,Chicago White Sox,OVER,4.1,-100.3,4.5-4.35,0-2,LOSS,-1.0
+2026,ML,,,,,NO_ELIGIBLE_EDGE_BETS,,,,,,
+2026,ATS,,,,,NO_ELIGIBLE_EDGE_BETS,,,,,,
+2026,OU,,,,,NO_ELIGIBLE_EDGE_BETS,,,,,,
+2026_through_aug20,ML,,,,,NO_ELIGIBLE_EDGE_BETS,,,,,,
+2026_through_aug20,ATS,,,,,NO_ELIGIBLE_EDGE_BETS,,,,,,
+2026_through_aug20,OU,,,,,NO_ELIGIBLE_EDGE_BETS,,,,,,

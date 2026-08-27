@@ -46,6 +46,7 @@ outputs\predictions_2023.csv
 outputs\predictions_2024.csv
 outputs\predictions_2026.csv
 outputs\predictions_2026_through_aug20.csv
+outputs\top_edge_bets.csv
 ```
 
 View the GitHub-rendered dashboard table at:
@@ -74,6 +75,7 @@ The dashboard reports:
 - closing moneyline coverage, win percentage, and ROI
 - closing ATS/run-line coverage, win percentage, and ROI
 - closing totals coverage, win percentage, and ROI
+- top 3 edge candidates for ML, ATS/run-line, and O/U by test bucket
 - feature coverage for odds history, starting pitchers, lineups, bullpen state,
   injuries, and weather
 

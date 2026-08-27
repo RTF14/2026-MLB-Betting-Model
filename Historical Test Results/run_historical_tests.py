@@ -203,6 +203,8 @@ def attach_odds_and_bets(row: dict[str, Any], odds_index: dict[str, dict[str, An
 
     ml_side = "HOME" if float(row["home_win_probability"]) >= 0.5 else "AWAY"
     ml_odds = enriched.get("close_home_ml") if ml_side == "HOME" else enriched.get("close_away_ml")
+    ml_model_probability = float(row["home_win_probability"]) if ml_side == "HOME" else float(row["away_win_probability"])
+    ml_edge_probability = ml_model_probability - american_to_probability(float(ml_odds)) if ml_odds is not None else None
     ml_result = ""
     if ml_odds is not None:
         ml_result = "WIN" if (actual_margin > 0 and ml_side == "HOME") or (actual_margin < 0 and ml_side == "AWAY") else "LOSS"
@@ -239,6 +241,8 @@ def attach_odds_and_bets(row: dict[str, Any], odds_index: dict[str, dict[str, An
     enriched.update(
         {
             "moneyline_pick": ml_side if ml_odds is not None else "",
+            "moneyline_edge_probability": round(float(ml_edge_probability), 4) if ml_edge_probability is not None else "",
+            "moneyline_edge_pct": round(float(ml_edge_probability) * 100.0, 2) if ml_edge_probability is not None else "",
             "moneyline_close_odds": round(float(ml_odds), 1) if ml_odds is not None else "",
             "moneyline_result": ml_result,
             "moneyline_unit_pnl": round(settle_bet(ml_result, ml_odds), 4) if settle_bet(ml_result, ml_odds) is not None else "",
@@ -357,6 +361,57 @@ def md_table(rows: list[dict[str, Any]], columns: list[str]) -> list[str]:
     return lines
 
 
+def top_edge_bets(prediction_sets: dict[str, list[dict[str, Any]]], limit: int = 3) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    markets = [
+        ("ML", "moneyline_edge_probability", "moneyline_pick", "moneyline_close_odds", "moneyline_result", "moneyline_unit_pnl", "moneyline_edge_pct"),
+        ("ATS", "ats_edge_runs", "ats_pick", "ats_close_odds", "ats_result", "ats_unit_pnl", "ats_edge_runs"),
+        ("OU", "ou_edge_runs", "ou_pick", "ou_close_odds", "ou_result", "ou_unit_pnl", "ou_edge_runs"),
+    ]
+    for label, rows in prediction_sets.items():
+        for market, sort_key, pick_key, odds_key_name, result_key, pnl_key, display_key in markets:
+            eligible = [row for row in rows if row.get(sort_key) != "" and row.get(odds_key_name) != "" and float(row[sort_key]) > 0]
+            ranked = sorted(eligible, key=lambda row: float(row[sort_key]), reverse=True)[:limit]
+            if not ranked:
+                records.append(
+                    {
+                        "test": label,
+                        "market": market,
+                        "rank": "",
+                        "game_date": "",
+                        "away_team": "",
+                        "home_team": "",
+                        "pick": "NO_ELIGIBLE_EDGE_BETS",
+                        "edge": "",
+                        "close_odds": "",
+                        "pred_score": "",
+                        "actual_score": "",
+                        "result": "",
+                        "unit_pnl": "",
+                    }
+                )
+                continue
+            for rank, row in enumerate(ranked, start=1):
+                records.append(
+                    {
+                        "test": label,
+                        "market": market,
+                        "rank": rank,
+                        "game_date": row["game_date"],
+                        "away_team": row["away_team"],
+                        "home_team": row["home_team"],
+                        "pick": row.get(pick_key, ""),
+                        "edge": row.get(display_key, ""),
+                        "close_odds": row.get(odds_key_name, ""),
+                        "pred_score": f"{row['pred_away_runs']}-{row['pred_home_runs']}",
+                        "actual_score": f"{row['actual_away_runs']}-{row['actual_home_runs']}",
+                        "result": row.get(result_key, ""),
+                        "unit_pnl": row.get(pnl_key, ""),
+                    }
+                )
+    return records
+
+
 def write_dashboard(summary_rows: list[dict[str, Any]], prediction_sets: dict[str, list[dict[str, Any]]]) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     columns = [
@@ -381,6 +436,8 @@ def write_dashboard(summary_rows: list[dict[str, Any]], prediction_sets: dict[st
         "ou_roi",
     ]
     feature_rows = build_feature_coverage(summary_rows, prediction_sets)
+    top_edges = top_edge_bets(prediction_sets)
+    top_edge_columns = ["test", "market", "rank", "game_date", "away_team", "home_team", "pick", "edge", "close_odds", "pred_score", "actual_score", "result", "unit_pnl"]
     lines = [
         "# Historical MLB Starter Model Dashboard",
         "",
@@ -393,6 +450,10 @@ def write_dashboard(summary_rows: list[dict[str, Any]], prediction_sets: dict[st
         "## Feature Coverage",
         "",
         *md_table(feature_rows, ["test", "odds_history", "closing_moneyline", "closing_spread", "closing_total", "starting_pitchers", "lineups", "bullpen_state", "injuries", "weather"]),
+        "",
+        "## Top 3 Edge Bets By Market",
+        "",
+        *md_table(top_edges, top_edge_columns),
         "",
         "## Notes",
         "",
@@ -426,6 +487,7 @@ def write_dashboard(summary_rows: list[dict[str, Any]], prediction_sets: dict[st
             ],
         ]
     )
+    top_edges_table = html_table(top_edges, top_edge_columns)
     sections = []
     for label, rows in prediction_sets.items():
         preview = rows[:25]
@@ -482,6 +544,8 @@ def write_dashboard(summary_rows: list[dict[str, Any]], prediction_sets: dict[st
     <table>{summary_table}</table>
     <h2>Feature Coverage</h2>
     <table>{feature_table(feature_rows)}</table>
+    <h2>Top 3 Edge Bets By Market</h2>
+    <table>{top_edges_table}</table>
     {''.join(sections)}
   </main>
 </body>
@@ -522,6 +586,10 @@ def build_feature_coverage(summary_rows: list[dict[str, Any]], prediction_sets: 
 
 def feature_table(rows: list[dict[str, Any]]) -> str:
     columns = ["test", "odds_history", "closing_moneyline", "closing_spread", "closing_total", "starting_pitchers", "lineups", "bullpen_state", "injuries", "weather"]
+    return html_table(rows, columns)
+
+
+def html_table(rows: list[dict[str, Any]], columns: list[str]) -> str:
     table_rows = ["<tr>" + "".join(f"<th>{html.escape(col)}</th>" for col in columns) + "</tr>"]
     for row in rows:
         table_rows.append("<tr>" + "".join(f"<td>{html.escape(str(row.get(col, '')))}</td>" for col in columns) + "</tr>")
@@ -548,6 +616,7 @@ def main() -> int:
         summary_rows.append(summarize(label, predictions))
 
     write_csv(summary_rows, OUT / "summary.csv")
+    write_csv(top_edge_bets(prediction_sets), OUT / "top_edge_bets.csv")
     write_dashboard(summary_rows, prediction_sets)
     print(json.dumps({"output_dir": str(OUT), "tests": summary_rows}, indent=2))
     return 0

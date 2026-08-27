@@ -20,4 +20,14 @@ Model: starter baseline
 | Baltimore Orioles | Athletics | 4.72-4.29 | Baltimore Orioles | 64.5% | 9.01 |
 | Arizona Diamondbacks | San Francisco Giants | 4.38-4.47 | San Francisco Giants | 52.3% | 8.85 |
 
+## Top 3 Daily Edge Bets By Market
+
+| market | rank | away_team | home_team | pick | edge | odds | pred_score |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ML |  |  |  | NO_MARKET_LINES_OR_POSITIVE_EDGE |  |  |  |
+| ATS |  |  |  | NO_MARKET_LINES_OR_POSITIVE_EDGE |  |  |  |
+| OU |  |  |  | NO_MARKET_LINES_OR_POSITIVE_EDGE |  |  |  |
+
+Daily edge bets require `daily_market_lines.csv`. If market lines are missing, the edge table shows an explicit no-line placeholder.
+
 This is a starter model interface. It does not include live odds, injury feeds, pitcher-level projections, or certified bet execution yet.

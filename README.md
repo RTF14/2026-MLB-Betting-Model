@@ -93,7 +93,8 @@ data\raw\mlb_odds_dataset.json
 ```
 
 When present, it adds closing moneyline, ATS/run-line, and totals win
-percentage/ROI. Feature coverage for odds history, starting pitchers, lineups,
+percentage/ROI plus the top 3 edge candidates for ML, ATS/run-line, and O/U by
+test bucket. Feature coverage for odds history, starting pitchers, lineups,
 bullpen state, injuries, and weather is shown separately so missing data is
 visible instead of silently assumed.
 
