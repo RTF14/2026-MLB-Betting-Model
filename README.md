@@ -61,6 +61,30 @@ Manual GitHub runs also update:
 Run Tomorrow's Predictions\latest_predictions.md
 ```
 
+## Historical Test Dashboard
+
+Run the historical tests locally:
+
+```powershell
+cd "Historical Test Results"
+.\run_historical_tests.ps1
+```
+
+Or run it in GitHub:
+
+1. Open the repo on GitHub.
+2. Go to `Actions`.
+3. Select `Run Historical Tests`.
+4. Click `Run workflow`.
+5. Open the completed run to see the summary table.
+6. Download the `mlb-historical-test-results` artifact for CSVs and dashboard HTML.
+
+GitHub-rendered dashboard:
+
+```text
+Historical Test Results\outputs\dashboard.md
+```
+
 ## Notes
 
 Keep large datasets, generated reports, and local execution outputs out of Git.
