@@ -2,6 +2,31 @@
 
 Research and execution workspace for the 2026 MLB betting model.
 
+## Start Here: Run It In GitHub
+
+Use this link:
+
+[Open GitHub Run Page](https://github.com/RTF14/2026-MLB-Betting-Model/actions/workflows/run-tomorrows-predictions.yml)
+
+Then:
+
+1. Click `Run workflow`
+2. Click the green `Run workflow` button
+3. Wait for the run to finish
+4. Click the completed run
+5. Read the predictions table on the run page
+
+If you do not see the button, make sure you are signed into GitHub as `RTF14`
+and that you are on the repo's `Actions` page.
+
+Latest saved prediction table:
+
+[View Latest Predictions](https://github.com/RTF14/2026-MLB-Betting-Model/blob/main/Run%20Tomorrow%27s%20Predictions/latest_predictions.md)
+
+Historical dashboard:
+
+[View Historical Dashboard](https://github.com/RTF14/2026-MLB-Betting-Model/blob/main/Historical%20Test%20Results/outputs/dashboard.md)
+
 ## Project Layout
 
 ```text
@@ -47,13 +72,12 @@ Run Tomorrow's Predictions\outputs\YYYY-MM-DD\
 
 You can also run it directly in GitHub:
 
-1. Open the repo on GitHub.
-2. Go to `Actions`.
-3. Select `Run Tomorrow's Predictions`.
-4. Click `Run workflow`.
-5. Leave `prediction_date` blank for tomorrow UTC, or enter a date like `2026-08-28`.
-6. Open the completed run to see the predictions table in the run summary.
-7. Download the `mlb-tomorrow-predictions` artifact if you want the CSV files.
+1. Open [Run Tomorrow's Predictions](https://github.com/RTF14/2026-MLB-Betting-Model/actions/workflows/run-tomorrows-predictions.yml).
+2. Click `Run workflow`.
+3. Leave `prediction_date` blank for tomorrow UTC, or enter a date like `2026-08-28`.
+4. Click the green `Run workflow` button.
+5. Open the completed run to see the predictions table in the run summary.
+6. Download the `mlb-tomorrow-predictions` artifact if you want the CSV files.
 
 Manual GitHub runs also update:
 
@@ -72,13 +96,12 @@ cd "Historical Test Results"
 
 Or run it in GitHub:
 
-1. Open the repo on GitHub.
-2. Go to `Actions`.
-3. Select `Run Historical Tests`.
-4. Click `Run workflow`.
-5. Leave `include_odds_history` as `true` to calculate closing-line P/L where public odds history is available.
-6. Open the completed run to see the summary and feature-coverage tables.
-7. Download the `mlb-historical-test-results` artifact for CSVs and dashboard HTML.
+1. Open [Run Historical Tests](https://github.com/RTF14/2026-MLB-Betting-Model/actions/workflows/run-historical-tests.yml).
+2. Click `Run workflow`.
+3. Leave `include_odds_history` as `true` to calculate closing-line P/L where public odds history is available.
+4. Click the green `Run workflow` button.
+5. Open the completed run to see the summary and feature-coverage tables.
+6. Download the `mlb-historical-test-results` artifact for CSVs and dashboard HTML.
 
 GitHub-rendered dashboard:
 
