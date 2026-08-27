@@ -32,7 +32,7 @@ pytest
 
 ## Run Tomorrow's Predictions
 
-Use the one-step runner:
+Use the local one-step runner:
 
 ```powershell
 cd "Run Tomorrow's Predictions"
@@ -44,6 +44,15 @@ Outputs are written under:
 ```text
 Run Tomorrow's Predictions\outputs\YYYY-MM-DD\
 ```
+
+You can also run it directly in GitHub:
+
+1. Open the repo on GitHub.
+2. Go to `Actions`.
+3. Select `Run Tomorrow's Predictions`.
+4. Click `Run workflow`.
+5. Leave `prediction_date` blank for tomorrow UTC, or enter a date like `2026-08-28`.
+6. Open the completed run and download the `mlb-tomorrow-predictions` artifact.
 
 ## Notes
 

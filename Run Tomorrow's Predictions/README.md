@@ -30,6 +30,15 @@ outputs\YYYY-MM-DD\tomorrow_predictions.md
 outputs\YYYY-MM-DD\run_summary.json
 ```
 
+## Run In GitHub
+
+1. Open the GitHub repo.
+2. Go to `Actions`.
+3. Select `Run Tomorrow's Predictions`.
+4. Click `Run workflow`.
+5. Leave `prediction_date` blank for tomorrow UTC, or enter a date like `2026-08-28`.
+6. Download the `mlb-tomorrow-predictions` artifact from the completed run.
+
 ## What It Does
 
 1. Uses tomorrow's UTC date by default.
