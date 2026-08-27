@@ -30,6 +30,21 @@ Run tests:
 pytest
 ```
 
+## Run Tomorrow's Predictions
+
+Use the one-step runner:
+
+```powershell
+cd "Run Tomorrow's Predictions"
+.\run.ps1
+```
+
+Outputs are written under:
+
+```text
+Run Tomorrow's Predictions\outputs\YYYY-MM-DD\
+```
+
 ## Notes
 
 Keep large datasets, generated reports, and local execution outputs out of Git.
