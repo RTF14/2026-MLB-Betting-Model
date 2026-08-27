@@ -25,6 +25,7 @@ For a specific date:
 The runner writes:
 
 ```text
+latest_predictions.md
 outputs\YYYY-MM-DD\tomorrow_predictions.csv
 outputs\YYYY-MM-DD\tomorrow_predictions.md
 outputs\YYYY-MM-DD\run_summary.json
@@ -38,6 +39,10 @@ outputs\YYYY-MM-DD\run_summary.json
 4. Click `Run workflow`.
 5. Leave `prediction_date` blank for tomorrow UTC, or enter a date like `2026-08-28`.
 6. Download the `mlb-tomorrow-predictions` artifact from the completed run.
+
+The completed Actions run also shows the predictions table directly on the run
+summary page. Manual GitHub runs update `latest_predictions.md` in this folder,
+so the newest table is viewable in the repo without downloading the artifact.
 
 ## What It Does
 

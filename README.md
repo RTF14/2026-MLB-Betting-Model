@@ -52,7 +52,14 @@ You can also run it directly in GitHub:
 3. Select `Run Tomorrow's Predictions`.
 4. Click `Run workflow`.
 5. Leave `prediction_date` blank for tomorrow UTC, or enter a date like `2026-08-28`.
-6. Open the completed run and download the `mlb-tomorrow-predictions` artifact.
+6. Open the completed run to see the predictions table in the run summary.
+7. Download the `mlb-tomorrow-predictions` artifact if you want the CSV files.
+
+Manual GitHub runs also update:
+
+```text
+Run Tomorrow's Predictions\latest_predictions.md
+```
 
 ## Notes
 

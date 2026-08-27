@@ -189,13 +189,18 @@ def main() -> int:
     predictions = [predict_game(game, ratings) for game in games]
 
     out_dir = args.out_dir / day.isoformat()
-    write_csv(predictions, out_dir / "tomorrow_predictions.csv")
-    write_markdown(predictions, out_dir / "tomorrow_predictions.md", day)
+    csv_path = out_dir / "tomorrow_predictions.csv"
+    markdown_path = out_dir / "tomorrow_predictions.md"
+    latest_markdown_path = HERE / "latest_predictions.md"
+    write_csv(predictions, csv_path)
+    write_markdown(predictions, markdown_path, day)
+    write_markdown(predictions, latest_markdown_path, day)
     summary = {
         "date": day.isoformat(),
         "games": len(predictions),
-        "csv": str(out_dir / "tomorrow_predictions.csv"),
-        "markdown": str(out_dir / "tomorrow_predictions.md"),
+        "csv": str(csv_path),
+        "markdown": str(markdown_path),
+        "latest_markdown": str(latest_markdown_path),
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
     }
     (out_dir / "run_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
